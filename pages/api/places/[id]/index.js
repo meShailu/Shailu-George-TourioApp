@@ -11,6 +11,13 @@ export default async function handler(request, response) {
 
   const place = await Place.findById(id);
 
+  if (request.method === "PATCH") {
+    await Place.findByIdAndUpdate(id, {
+      $set: request.body,
+    });
+    return response.status(200).json("place updated successfully");
+  }
+
   if (!place) {
     return response.status(404).json({ status: "Not found" });
   }
