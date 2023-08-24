@@ -1,10 +1,10 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router.js';
-import useSWR from 'swr';
-import styled from 'styled-components';
-import { StyledLink } from '../../../components/StyledLink.js';
-import { StyledButton } from '../../../components/StyledButton.js';
-import { StyledImage } from '../../../components/StyledImage.js';
+import Link from "next/link";
+import { useRouter } from "next/router.js";
+import useSWR from "swr";
+import styled from "styled-components";
+import { StyledLink } from "../../../components/StyledLink.js";
+import { StyledButton } from "../../../components/StyledButton.js";
+import { StyledImage } from "../../../components/StyledImage.js";
 
 const ImageContainer = styled.div`
   position: relative;
@@ -37,13 +37,25 @@ export default function DetailsPage() {
 
   if (!isReady || isLoading || error) return <h2>Loading...</h2>;
 
-  function deletePlace() {
-    console.log('deleted?');
+  async function deletePlace() {
+    try {
+      const response = await fetch(`/api/places/${id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        router.push("/");
+      } else {
+        console.error("Failed to delete place");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
   }
 
   return (
     <>
-      <Link href={'/'} passHref legacyBehavior>
+      <Link href={"/"} passHref legacyBehavior>
         <StyledLink justifySelf="start">back</StyledLink>
       </Link>
       <ImageContainer>
