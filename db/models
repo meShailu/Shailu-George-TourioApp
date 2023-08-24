@@ -1,0 +1,12 @@
+// db/models/Joke.js
+import mongoose from "mongoose";
+
+const { Schema } = mongoose;
+
+const placesSchema = new Schema({
+  jok: { type: String, required: true },
+});
+
+const Joke = mongoose.models.Joke || mongoose.model("Joke", jokeSchema);
+
+export default Joke;
