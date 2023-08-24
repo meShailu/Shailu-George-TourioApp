@@ -12,7 +12,7 @@ export default function CreatePlacePage() {
   const router = useRouter();
 
   async function addPlace(place) {
-    console.log("Place added (but not really...),", place);
+    // console.log("Place added (but not really...),");
 
     const response = await fetch("/api/places", {
       method: "POST",

@@ -7,7 +7,7 @@ export default async function handler(request, response) {
   if (request.method === "GET") {
     try {
       const places = await Place.find();
-      console.log(places);
+      // console.log(places);
       return response.status(200).json(places);
     } catch (error) {
       return response.status(405).json({ message: "Method not allowed" });
