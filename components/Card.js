@@ -6,6 +6,7 @@ const Article = styled.article`
   border: 5px solid black;
   border-radius: 0.8rem;
   padding: 0.5rem;
+  background-color: #fff3e3;
 `;
 
 const ImageContainer = styled.div`
